@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>한덕환 - 온라인 명함</title>
+    <!-- 폰트 적용: 깔끔한 산세리프체 (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --text-main: #222222;
+            --text-secondary: #555555;
+            --sky-blue: #87CEEB;
+            --border-color: #EEEEEE;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 모바일 세로 화면을 최우선으로, PC에서도 모바일 비율로 보이게 중앙 정렬 */
+        .container {
+            width: 100%;
+            max-width: 480px; 
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            position: relative;
+            padding-bottom: 60px;
+        }
+
+        /* 상단 배경사진 영역 (프로필 하단 1/3을 제외한 위쪽을 채움) */
+        .header-bg {
+            width: 100%;
+            height: 240px;
+            background-image: url('bg_po.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 원형 프로필 영역 */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 프로필(120px)의 하단 1/3(40px)을 남기고, 2/3(80px)가 배경과 겹치도록 위로 올림 */
+            margin-top: -80px; 
+            padding: 0 20px;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color); /* 깔끔한 분리선 역할을 위한 배경색 테두리 */
+            background-color: var(--bg-color);
+        }
+
+        /* 이름과 직업 (한 줄 배치) */
+        .name-group {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .subtitle {
+            font-size: 1rem; /* 본문 글자크기 */
+            font-weight: 400; /* regular */
+        }
+
+        .name {
+            font-size: 1.5rem; /* 본문 글자크기의 1.5배 */
+            font-weight: 700; /* bold */
+        }
+
+        /* 캐치프레이즈 1 */
+        .catchphrase {
+            font-size: 1rem; /* 본문 글자크기 */
+            font-weight: 700; /* bold */
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* 경력 영역 (왼쪽 정렬) */
+        .experience-section {
+            margin-top: 32px;
+            padding: 0 32px; /* 깔끔한 좌우 여백 */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .exp-list {
+            list-style: none;
+            width: 100%;
+        }
+
+        .exp-list li {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 6px;
+            word-break: keep-all; /* 단어 단위 끊김 방지 */
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 과거 경력 */
+        .past-exp-title {
+            font-size: 1rem;
+            font-weight: 700; /* bold */
+            margin-top: 24px;
+            margin-bottom: 6px;
+        }
+
+        .past-exp-desc {
+            font-size: 1rem;
+            font-weight: 400; /* regular */
+            margin-bottom: 32px; /* 한 줄의 빈칸 역할 (여백) */
+        }
+
+        /* 액션 및 버튼 영역 */
+        .action-section {
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* 깔끔한 2D 스타일 버튼들 (그림자 없음) */
+        .btn-email {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 56px;
+            background-color: #F8F9FA;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-email:active {
+            background-color: #EEEEEE;
+        }
+
+        /* 연동사이트 텍스트 */
+        .links-title {
+            font-size: 1rem; /* 본문 크기 */
+            font-weight: 400; /* regular */
+            color: var(--sky-blue); /* 하늘색 */
+            margin-bottom: 16px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* 정사각형 버튼 컨테이너 */
+        .square-buttons-container {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* 정사각형 버튼 */
+        .btn-square {
+            flex: 1;
+            aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background-color: #FFFFFF;
+            color: var(--text-main);
+            transition: background-color 0.2s;
+            line-height: 1.5;
+            word-break: keep-all;
+            padding: 10px;
+        }
+
+        .btn-square:active {
+            background-color: #F8F9FA;
+        }
+
+        /* 데스크톱 마우스 오버 효과 (터치기기 제외) */
+        @media (hover: hover) {
+            .btn-email:hover {
+                background-color: #F1F3F5;
+            }
+            .btn-square:hover {
+                background-color: #F8F9FA;
+                border-color: #DDDDDD;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 상단 배경사진 -->
+        <div class="header-bg"></div>
+
+        <!-- 프로필 영역 -->
+        <div class="profile-container">
+            <img src="profile_po.jpg" alt="한덕환 프로필 사진" class="profile-img">
+            
+            <div class="name-group">
+                <span class="subtitle">small N잡러</span>
+                <span class="name">한덕환</span>
+            </div>
+            
+            <div class="catchphrase">《이제는. 좋아하는 일만 하는 사람》</div>
+        </div>
+
+        <!-- 경력 영역 -->
+        <div class="experience-section">
+            <ul class="exp-list">
+                <li>지금.유튜브작가/@혼자걷다보면(2025서울대표 인플루언서 100인)</li>
+                <li>지금.소상공인 AI컨설턴트</li>
+                <li>지금.전문강사(서울시·대기업·공기관/중장년의삶)</li>
+                <li>지금.길여행가/둘레길강사</li>
+                <li>지금.브런치작가/투빈대디</li>
+                <li>직전.국립공원안전산행지원단</li>
+                <li>직전.구로구청 청년일자리멘토</li>
+            </ul>
+
+            <div class="past-exp-title">《그전엔. 직장인 30년》</div>
+            <div class="past-exp-desc">큰기업근무 15년. 작은기업경영 15년</div>
+        </div>
+
+        <!-- 액션 버튼 영역 -->
+        <div class="action-section">
+            <!-- 이메일 버튼 -->
+            <a href="mailto:hanmokhae@gmail.com" class="btn-email">이메일</a>
+
+            <!-- 연동 사이트 -->
+            <div class="links-title">연동사이트</div>
+            
+            <!-- 연동 사이트 버튼들 (정사각형) -->
+            <div class="square-buttons-container">
+                <a href="https://www.youtube.com/@혼자걷다보면" class="btn-square" target="_blank" rel="noopener noreferrer">
+                    @혼자걷다보면<br>(유튜브)
+                </a>
+                <a href="https://brunch.co.kr/@2beendaddy" class="btn-square" target="_blank" rel="noopener noreferrer">
+                    투빈대디<br>(브런치)
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
