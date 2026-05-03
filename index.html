@@ -94,13 +94,15 @@
         .catchphrase {
             font-size: 1rem; /* 본문 글자크기 */
             font-weight: 700; /* bold */
-            margin-top: 8px;
-            text-align: center;
+            margin-top: 24px; /* 1줄의 공백을 위해 위쪽 마진 증가 */
+            width: 100%;
+            padding-left: 12px;
+            text-align: left; /* 왼쪽 정렬 */
         }
 
         /* 경력 영역 (왼쪽 정렬) */
         .experience-section {
-            margin-top: 32px;
+            margin-top: 0; /* 캐치프레이즈 아래 빈 줄 제거 */
             padding: 0 32px; /* 깔끔한 좌우 여백 */
             display: flex;
             flex-direction: column;
@@ -241,12 +243,14 @@
         <!-- 경력 영역 -->
         <div class="experience-section">
             <ul class="exp-list">
-                <li>지금.유튜브작가/@혼자걷다보면(2025서울대표 인플루언서 100인)</li>
+                <li>지금.유튜브작가/@혼자걷다보면</li>
+                <li>(2025서울대표 인플루언서 100인)</li>
                 <li>지금.소상공인 AI컨설턴트</li>
                 <li>지금.전문강사(서울시·대기업·공기관/중장년의삶)</li>
                 <li>지금.길여행가/둘레길강사</li>
                 <li>지금.브런치작가/투빈대디</li>
                 <li>직전.국립공원안전산행지원단</li>
+                <li>직전.서울시 소상공인 온라인마케터</li>
                 <li>직전.구로구청 청년일자리멘토</li>
             </ul>
 
@@ -272,201 +276,6 @@
                 </a>
             </div>
         </div>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한덕환의 온라인 명함</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #FFFFFF;
-            color: #333;
-            line-height: 1.6;
-            font-size: 16px; /* 본문 기본 글자 크기 */
-        }
-
-        .container {
-            max-width: 500px; /* 데스크탑에서 페이지 최대 너비 */
-            margin: 0 auto;
-            padding: 0 15px; /* 모바일에서 좌우 여백 */
-            box-sizing: border-box;
-        }
-
-        .profile-header {
-            position: relative;
-            width: 100%;
-            height: 200px; /* 배경 이미지 영역의 높이 */
-            background-image: url('bg_po.jpg');
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            margin-bottom: 60px; /* 프로필 사진 하단 1/3을 포함한 추가 여백 */
-        }
-
-        .profile-pic {
-            position: absolute;
-            bottom: -40px; /* 프로필 사진 높이(120px)의 1/3인 40px만큼 헤더 아래로 배치 */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #FFFFFF; /* 흰색 테두리로 배경과의 구분 */
-            z-index: 10;
-        }
-
-        .content {
-            padding-top: 10px; /* 프로필 사진과의 간격 조절 */
-            text-align: center;
-        }
-
-        .name-intro {
-            font-size: 1em;
-            margin-bottom: 0.5em;
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            gap: 0.5em; /* 'small N잡러'와 '한덕환' 사이 간격 */
-        }
-
-        .job-title {
-            font-weight: normal; /* regular체 */
-        }
-
-        .name {
-            font-size: 1.5em; /* 본문 글자 크기의 1.5배 */
-            font-weight: bold;
-        }
-
-        .slogan {
-            font-size: 1em;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 1.5em;
-        }
-
-        .career-section p, .past-career-title, .past-career-detail {
-            text-align: left;
-            margin: 0.5em 0;
-            padding-left: 15px; /* 왼쪽 정렬 및 컨테이너 여백 고려 */
-            padding-right: 15px;
-            word-break: keep-all; /* 한글 단어 잘림 방지 */
-        }
-
-        .past-career-title {
-            font-weight: bold;
-            margin-top: 2em; /* 현재 경력과의 간격 */
-        }
-
-        .contact-section {
-            margin-top: 2em; /* 빈칸 한 줄 */
-            margin-bottom: 2em;
-        }
-
-        .email-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #f0f0f0; /* 버튼 배경색 */
-            color: #333;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .email-button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .linked-sites-title {
-            font-size: 1em;
-            font-weight: normal;
-            color: #00BFFF; /* 하늘색 */
-            text-align: center;
-            margin-top: 2em;
-            margin-bottom: 1em;
-        }
-
-        .linked-sites-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* 버튼 사이 간격 */
-            flex-wrap: wrap; /* 작은 화면에서 버튼 줄바꿈 */
-            margin-bottom: 30px; /* 하단 여백 */
-        }
-
-        .social-button {
-            display: inline-flex;
-            align-items: center; /* 텍스트 세로 중앙 정렬 */
-            justify-content: center; /* 텍스트 가로 중앙 정렬 */
-            width: 150px; /* 정사각형 버튼 크기 */
-            height: 150px;
-            background-color: #f0f0f0;
-            color: #333;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9em; /* 텍스트 길이를 고려해 폰트 크기 조정 */
-            text-align: center;
-            word-break: keep-all;
-            box-shadow: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .social-button:hover {
-            background-color: #e0e0e0;
-        }
-
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header class="profile-header">
-            <img src="profile_po.jpg" alt="프로필 사진" class="profile-pic">
-        </header>
-
-        <main class="content">
-            <p class="name-intro">
-                <span class="job-title">small N잡러</span> <span class="name">한덕환</span>
-            </p>
-            <p class="slogan">《이제는. 좋아하는 일만 하는 사람》</p>
-
-            <div class="career-section">
-                <p>지금.유튜브작가/@혼자걷다보면(2025서울대표 인플루언서 100인)</p>
-                <p>지금.소상공인 AI컨설턴트</p>
-                <p>지금.전문강사(서울시·대기업·공기관/중장년의삶)</p>
-                <p>지금.길여행가/둘레길강사</p>
-                <p>지금.브런치작가/투빈대디</p>
-                <p>직전.국립공원안전산행지원단</p>
-                <p>직전.구로구청 청년일자리멘토</p>
-            </div>
-
-            <p class="past-career-title">《그전엔. 직장인 30년》</p>
-            <p class="past-career-detail">큰기업근무 15년. 작은기업경영 15년</p>
-
-            <div class="contact-section">
-                <a href="mailto:hanmokhae@gmail.com" class="email-button">이메일</a>
-            </div>
-
-            <p class="linked-sites-title">연동사이트</p>
-            <div class="linked-sites-buttons">
-                <a href="https://www.youtube.com/@혼자걷다보면" target="_blank" class="social-button youtube">
-                    @혼자걷다보면(유튜브)
-                </a>
-                <a href="https://brunch.co.kr/@2beendaddy" target="_blank" class="social-button brunch">
-                    투빈대디(브런치)
-                </a>
-            </div>
-        </main>
     </div>
 </body>
 </html>
