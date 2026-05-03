@@ -161,7 +161,6 @@
             font-weight: 600;
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            margin-bottom: 32px;
             transition: background-color 0.2s;
         }
 
@@ -261,7 +260,10 @@
         <!-- 액션 버튼 영역 -->
         <div class="action-section">
             <!-- 이메일 버튼 -->
-            <a href="mailto:hanmokhae@gmail.com" class="btn-email">이메일</a>
+            <div style="width: 100%; margin-bottom: 24px;">
+                <a href="mailto:hanmokhae@gmail.com" class="btn-email" style="margin-bottom: 8px;" onclick="document.getElementById('email-display').style.display='block';">이메일</a>
+                <div id="email-display" style="display: none; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">hanmokhae@gmail.com</div>
+            </div>
 
             <!-- 연동 사이트 -->
             <div class="links-title">연동사이트</div>
